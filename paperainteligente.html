@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatrice Scientifica - Stile Windows 3.1</title>
+    <style>
+        /* Sfondo desktop tipico di Windows 3.1 (Verde Teal Classico) */
+        body {
+            background-color: #008080;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            font-size: 13px;
+            margin: 30px;
+            color: #000000;
+        }
+
+        /* La finestra dell'applicazione */
+        .finestra-win31 {
+            background-color: #c0c0c0; /* Grigio classico Windows */
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            width: 420px;
+            padding: 4px;
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        /* Barra del titolo blu */
+        .barra-titolo {
+            background-color: #000080; /* Blu scuro Windows 3.1 */
+            color: #ffffff;
+            padding: 4px 8px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* Contenitore interno */
+        .contenuto-calc {
+            padding: 10px;
+        }
+
+        /* Schermo della calcolatrice incavato */
+        .schermo-box {
+            background-color: #ffffff;
+            border-top: 2px solid #808080;
+            border-left: 2px solid #808080;
+            border-right: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+            padding: 6px;
+            margin-bottom: 15px;
+            text-align: right;
+            font-family: monospace;
+            font-size: 22px;
+            font-weight: bold;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        /* Tabella per i pulsanti (Garantisce allineamento perfetto su IE11) */
+        .tabella-pulsanti {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 5px;
+        }
+
+        /* Stile dei bottoni di Windows 3.1 */
+        .btn-win31 {
+            width: 100%;
+            height: 35px;
+            background-color: #c0c0c0;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            color: #000000;
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #808080;
+            border-bottom: 2px solid #808080;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Effetto click del bottone */
+        .btn-win31:active {
+            border-top: 2px solid #808080;
+            border-left: 2px solid #808080;
+            border-right: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+            padding-top: 2px;
+            padding-left: 2px;
+        }
+
+        /* Colori speciali per funzioni specifiche */
+        .btn-rosso { color: #800000; }
+        .btn-blu { color: #000080; }
+        
+        .info-barra {
+            font-size: 11px;
+            color: #404040;
+            margin-top: 8px;
+            text-align: center;
+            border-top: 1px solid #808080;
+            padding-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="finestra-win31">
+    <div class="barra-titolo">Calcolatrice Scientifica v3.1</div>
+    
+    <div class="contenuto-calc">
+        <!-- Display dei numeri -->
+        <div class="schermo-box" id="display">0</div>
+        
+        <!-- Tastiera organizzata in tabella per compatibilità IE11 -->
+        <table class="tabella-pulsanti">
+            <tr>
+                <td><button class="btn-win31 btn-rosso" id="btnC">C</button></td>
+                <td><button class="btn-win31 btn-rosso" id="btnBack">←</button></td>
+                <td><button class="btn-win31 btn-blu" id="btnPi">π</button></td>
+                <td><button class="btn-win31 btn-blu" id="btnSqrt">√</button></td>
+                <td><button class="btn-win31 btn-blu" id="btnPow">^</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn-win31 btn-blu" id="btnSin">sin</button></td>
+                <td><button class="btn-win31" id="btn7">7</button></td>
+                <td><button class="btn-win31" id="btn8">8</button></td>
+                <td><button class="btn-win31" id="btn9">9</button></td>
+                <td><button class="btn-win31 btn-rosso" id="btnDiv">/</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn-win31 btn-blu" id="btnCos">cos</button></td>
+                <td><button class="btn-win31" id="btn4">4</button></td>
+                <td><button class="btn-win31" id="btn5">5</button></td>
+                <td><button class="btn-win31" id="btn6">6</button></td>
+                <td><button class="btn-win31 btn-rosso" id="btnMul">*</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn-win31 btn-blu" id="btnTan">tan</button></td>
+                <td><button class="btn-win31" id="btn1">1</button></td>
+                <td><button class="btn-win31" id="btn2">2</button></td>
+                <td><button class="btn-win31" id="btn3">3</button></td>
+                <td><button class="btn-win31 btn-rosso" id="btnSub">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn-win31 btn-blu" id="btnLog">log</button></td>
+                <td><button class="btn-win31" id="btn0">0</button></td>
+                <td><button class="btn-win31" id="btnPunto">.</button></td>
+                <td><button class="btn-win31 btn-rosso" id="btnUguale">=</button></td>
+                <td><button class="btn-win31 btn-rosso" id="btnAdd">+</button></td>
+            </tr>
+        </table>
+        
+        <div class="info-barra">Ottimizzata per Windows 7 / Internet Explorer 11</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Stato della calcolatrice (Variabili ES5)
+    var espressioneCorrente = "";
+    var display = document.getElementById("display");
+    var operazioneInCorso = false;
+
+    // Funzione interna per aggiornare lo schermo in sicurezza
+    function aggiornaSchermo(valore) {
+        if (valore === "" || valore === undefined) {
+            display.innerHTML = "0";
+        } else {
+            // Evitiamo che il testo esca dallo schermo se troppo lungo
+            if (valore.length > 18) {
+                display.innerHTML = valore.substring(0, 18);
+            } else {
+                display.innerHTML = valore;
+            }
+        }
+    }
+
+    // Funzione per gestire i numeri inseriti
+    function aggiungiCarattere(carattere) {
+        if (display.innerHTML === "0" && carattere !== ".") {
+            espressioneCorrente = carattere;
+        } else {
+            espressioneCorrente += carattere;
+        }
+        aggiornaSchermo(espressioneCorrente);
+    }
+
+    // Collegamento degli eventi per i numeri (Compatibile IE11)
+    var numeri = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+    function impostaClickNumero(num) {
+        var idBottone = "btn" + (num === "." ? "Punto" : num);
+        document.getElementById(idBottone).addEventListener("click", function() {
+            aggiungiCarattere(num);
+        });
+    }
+    for (var i = 0; i < numeri.length; i++) {
+        impostaClickNumero(numeri[i]);
+    }
+
+    // Operatori base
+    document.getElementById("btnAdd").addEventListener("click", function() { aggiungiCarattere("+"); });
+    document.getElementById("btnSub").addEventListener("click", function() { aggiungiCarattere("-"); });
+    document.getElementById("btnMul").addEventListener("click", function() { aggiungiCarattere("*"); });
+    document.getElementById("btnDiv").addEventListener("click", function() { aggiungiCarattere("/"); });
+    document.getElementById("btnPow").addEventListener("click", function() { aggiungiCarattere("**"); });
+
+    // Tasto di pulizia totale (C)
+    document.getElementById("btnC").addEventListener("click", function() {
+        espressioneCorrente = "";
+        aggiornaSchermo("0");
+    });
+
+    // Tasto Backspace (Cancella ultimo carattere)
+    document.getElementById("btnBack").addEventListener("click", function() {
+        if (espressioneCorrente.length > 0) {
+            espressioneCorrente = espressioneCorrente.substring(0, espressioneCorrente.length - 1);
+            aggiornaSchermo(espressioneCorrente === "" ? "0" : espressioneCorrente);
+        }
+    });
+
+    // Tasto Pi Greco
+    document.getElementById("btnPi").addEventListener("click", function() {
+        aggiungiCarattere(Math.PI.toFixed(6));
+    });
+
+    // --- FUNZIONI SCIENTIFICHE DIRETTE ---
+    // Radice Quadrata
+    document.getElementById("btnSqrt").addEventListener("click", function() {
+        try {
+            var val = eval(espressioneCorrente);
+            if (val === undefined) val = 0;
+            var ris = Math.sqrt(val);
+            espressioneCorrente = ris.toString();
+            aggiornaSchermo(espressioneCorrente);
+        } catch(e) {
+            aggiornaSchermo("Errore");
+            espressioneCorrente = "";
+        }
+    });
+
+    // Seno
+    document.getElementById("btnSin").addEventListener("click", function() {
+        try {
+            var val = eval(espressioneCorrente);
+            var ris = Math.sin(val * Math.PI / 180); // Calcolo in gradi
+            espressioneCorrente = ris.toFixed(6).toString();
+            aggiornaSchermo(espressioneCorrente);
+        } catch(e) { aggiornaSchermo("Errore"); espressioneCorrente = ""; }
+    });
+
+    // Coseno
+    document.getElementById("btnCos").addEventListener("click", function() {
+        try {
+            var val = eval(espressioneCorrente);
+            var ris = Math.cos(val * Math.PI / 180); // Calcolo in gradi
+Usa il codice con cautela.
+espressioneCorrente = ris.toFixed(6).toString();
+aggiornaSchermo(espressioneCorrente);
+} catch(e) { aggiornaSchermo("Errore"); espressioneCorrente = ""; }
+});
+// Tangente
+document.getElementById("btnTan").addEventListener("click", function() {
+try {
+var val = eval(espressioneCorrente);
+var ris = Math.tan(val * Math.PI / 180);
+espressioneCorrente = ris.toFixed(6).toString();
+aggiornaSchermo(espressioneCorrente);
+} catch(e) { aggiornaSchermo("Errore"); espressioneCorrente = ""; }
+});
+// Logaritmo Naturale
+document.getElementById("btnLog").addEventListener("click", function() {
+try {
+var val = eval(espressioneCorrente);
+if (val <= 0) {
+aggiornaSchermo("Errore");
+espressioneCorrente = "";
+} else {
+var ris = Math.log(val);
+espressioneCorrente = ris.toFixed(6).toString();
+aggiornaSchermo(espressioneCorrente);
+}
+} catch(e) { aggiornaSchermo("Errore"); espressioneCorrente = ""; }
+});
+// --- CALCOLO RISULTATO FINALE (=) ---
+document.getElementById("btnUguale").addEventListener("click", function() {
+if (espressioneCorrente === "") return;
+try {
+// Nota di sicurezza: eval è accettabile in utility offline chiuse e locali su IE11
+var risultato = eval(espressioneCorrente);
+if (risultato === undefined) {
+aggiornaSchermo("0");
+espressioneCorrente = "";
+} else {
+espressioneCorrente = risultato.toString();
+aggiornaSchermo(espressioneCorrente);
+}
+} catch (errore) {
+aggiornaSchermo("Errore");
+espressioneCorrente = "";
+}
+});
+
+<FollowUp>
